@@ -1,0 +1,23 @@
+---
+deprecations:
+  - |
+    Version 2.1.0 of oslo.cache swithed from python-memcached to pymemcache,
+    we still maintain a backward compatibility matrix between arguments
+    consumed by these libraries, but python-memcached compat will be
+    dropped in future cycle.
+
+    All these arguments will be fully ignored, `debug`, `pload`, `pid`
+    `server_max_key_length`, `server_max_value_length`, `flush_on_reconnect`
+    `cache_cas`, `check_keys`
+
+    All these arguments are in the compatibility matrix but will be
+    removed soon, `pickleProtocol`, `pickler`, `unpickler`, `dead_retry`
+    `socket_timeout`
+fixes:
+  - |
+    Some clients gives arguments that correspond to the python-memcached
+    library, we need to support them by introducing a mapping maintained
+    during some period to avoid possible issues_ and allow user to migrate
+    to the right arguments.
+
+    .. _issues: https://bugs.launchpad.net/kolla-ansible/+bug/1866008
